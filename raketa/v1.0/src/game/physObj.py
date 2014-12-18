@@ -1,8 +1,8 @@
-# import pyglet
-from . import object, gameover
+from game import gameover
+from game.object import Object
 
 
-class PhysObj(object.Object):
+class PhysObj(Object):
     def __init__(self, game, *args, **kwargs):
         super().__init__(game, *args, **kwargs)
         self.zabit = False
