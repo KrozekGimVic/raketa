@@ -97,12 +97,28 @@ class Game:
                 y=window.height/2 - 240))
 
         for i in self.menuStart.buttons[:]:
-            napis  = pyglet.text.Label(text=i.name, font_size=20, x=i.x, y=i.y, bold = True, color=(250, 250, 0, 150), anchor_x = "center", anchor_y = "center")
+            napis = pyglet.text.Label(
+                text=i.name,
+                font_size=20,
+                x=i.x,
+                y=i.y,
+                bold=True,
+                color=(250, 250, 0, 150),
+                anchor_x = "center",
+                anchor_y = "center",
+            )
             self.menuStart.labels.append(napis)
 
         """HIGH SCORES MENU"""
         self.menuHighScores = menu.Menu()
-        napis = pyglet.text.Label(text="High Scores", font_size=50, x=50, y=500, bold = True, color=(250, 250, 0, 255))
+        napis = pyglet.text.Label(
+            text="High Scores",
+            font_size=50,
+            x=50,
+            y=500,
+            bold=True,
+            color=(250, 250, 0, 255),
+        )
         napis.rotation = 50
         self.menuHighScores.labels.append(napis)
         for i in self.highScores.getScores():
@@ -110,13 +126,37 @@ class Game:
         tmp = resources.GN
         tmp.anchor_x = tmp.width/2
         tmp.anchor_y = tmp.height/2
-        self.menuHighScores.buttons.append(gumb.Gumb(self, tmp, name = "Main Menu", batch = self.menuHighScores.buttonsBatch, x = window.width/2, y = window.height/2 - 240))
+        self.menuHighScores.buttons.append(
+            gumb.Gumb(
+                self,
+                tmp,
+                name="Main Menu",
+                batch=self.menuHighScores.buttonsBatch,
+                x=window.width/2,
+                y=window.height/2 - 240,
+            )
+        )
         for i in self.menuHighScores.buttons[:]:
-            napis  = pyglet.text.Label(text=i.name, font_size=20, x=i.x, y=i.y, bold = True, color=(250, 250, 0, 150), anchor_x = "center", anchor_y = "center")
+            napis = pyglet.text.Label(
+                text=i.name,
+                font_size=20,
+                x=i.x,
+                y=i.y,
+                bold=True,
+                color=(250, 250, 0, 150),
+                anchor_x = "center",
+                anchor_y = "center")
             self.menuHighScores.labels.append(napis)
 
         self.menuOptions = menu.Menu()
-        napis = pyglet.text.Label(text="Options", font_size=50, x=120, y=500, bold = True, color=(250, 250, 0, 255))
+        napis = pyglet.text.Label(
+            text="Options",
+            font_size=50,
+            x=120,
+            y=500,
+            bold=True,
+            color=(250, 250, 0, 255)
+            )
         napis.rotation = 50
         self.menuOptions.labels.append(napis)
         tmp = resources.GchooseS1
@@ -128,9 +168,30 @@ class Game:
         tmp1 = resources.GNp
         tmp1.anchor_x = tmp1.width/2
         tmp1.anchor_y = tmp1.height/2
-        self.menuOptions.buttons.append(gumb.Gumb(self, tmp, name = "Chose1", batch = self.menuOptions.buttonsBatch, x = window.width/2 - tmp.width, y = window.height/2))
-        self.menuOptions.buttons.append(gumb.Gumb(self, tmp2, name = "Chose2", batch = self.menuOptions.buttonsBatch, x = window.width/2 + tmp.width, y = window.height/2))
-        self.menuOptions.buttons.append(gumb.Gumb(self, tmp1, name = "Main Menu", batch = self.menuOptions.buttonsBatch, x = window.width/2, y = window.height/2 - 80))
+        self.menuOptions.buttons.append(
+            gumb.Gumb(
+                self,
+                tmp,
+                name="Chose1",
+                batch=self.menuOptions.buttonsBatch,
+                x=window.width/2 - tmp.width,
+                y=window.height/2))
+        self.menuOptions.buttons.append(
+            gumb.Gumb(
+                self,
+                tmp2,
+                name="Chose2",
+                batch=self.menuOptions.buttonsBatch,
+                x=window.width/2 + tmp.width,
+                y=window.height/2))
+        self.menuOptions.buttons.append(
+            gumb.Gumb(
+                self,
+                tmp1,
+                name="Main Menu",
+                batch=self.menuOptions.buttonsBatch,
+                x=window.width/2,
+                y=window.height/2 - 80))
         for i in self.menuOptions.buttons[:]:
 ##            #if(i.name=='Chose1'):
 ##                #self.slika = resources.raketa1
@@ -147,35 +208,83 @@ class Game:
 ##                #self.slika2.anchor_y = self.slika2.height/2
 ##
 ##            else:
-            napis  = pyglet.text.Label(text=i.name, font_size=20, x=i.x, y=i.y, bold = True, color=(250, 250, 0, 150), anchor_x = "center", anchor_y = "center")
+            napis = pyglet.text.Label(
+                text=i.name,
+                font_size=20,
+                x=i.x,
+                y=i.y,
+                bold=True,
+                color=(250, 250, 0, 150),
+                anchor_x="center",
+                anchor_y="center"
+            )
             self.menuOptions.labels.append(napis)
 
-
-
         self.menuPause = menu.Menu()
-        napis = pyglet.text.Label(text="Pause", font_size=50, x=150, y=500, bold = True, color=(250, 250, 0, 255))
+        napis = pyglet.text.Label(
+            text="Pause",
+            font_size=50,
+            x=150,
+            y=500,
+            bold=True,
+            color=(250, 250, 0, 255)
+        )
         napis.rotation = 50
         self.menuPause.labels.append(napis)
         tmp = resources.GN
         tmp.anchor_x = tmp.width/2
         tmp.anchor_y = tmp.height/2
-        self.menuPause.buttons.append(gumb.Gumb(self, tmp, name = "Resume", batch = self.menuPause.buttonsBatch, x = window.width/2, y = window.height/2))
-        self.menuPause.buttons.append(gumb.Gumb(self, tmp, name = "Restart", batch = self.menuPause.buttonsBatch, x = window.width/2, y = window.height/2 - 80))
-        self.menuPause.buttons.append(gumb.Gumb(self, tmp, name = "Main Menu", batch = self.menuPause.buttonsBatch, x = window.width/2, y = window.height/2 - 160))
+        self.menuPause.buttons.append(
+            gumb.Gumb(
+                self,
+                tmp,
+                name="Resume",
+                batch=self.menuPause.buttonsBatch,
+                x=window.width/2,
+                y=window.height/2))
+        self.menuPause.buttons.append(
+            gumb.Gumb(
+                self,
+                tmp,
+                name="Restart",
+                batch=self.menuPause.buttonsBatch,
+                x=window.width/2,
+                y=window.height/2 - 80
+            )
+        )
+        self.menuPause.buttons.append(
+            gumb.Gumb(
+                self,
+                tmp,
+                name="Main Menu",
+                batch=self.menuPause.buttonsBatch,
+                x=window.width/2,
+                y=window.height/2 - 160
+            )
+        )
         for i in self.menuPause.buttons[:]:
-            napis  = pyglet.text.Label(text=i.name, font_size=20, x=i.x, y=i.y, bold = True, color=(250, 250, 0, 150), anchor_x = "center", anchor_y = "center")
+            napis = pyglet.text.Label(
+                text=i.name,
+                font_size=20,
+                x=i.x,
+                y=i.y,
+                bold=True,
+                color=(250, 250, 0, 150),
+                anchor_x = "center",
+                anchor_y = "center",
+            )
             self.menuPause.labels.append(napis)
 
         self.slika = resources.raketa1
         self.slika_metek = resources.bull1
 
     def myInit(self):
-        self.metki=False
-        #self.vy_base_min=-50
-        self.vy_base_max=-350
-        self.vy_base=-150
-        self.vy_scale=1.005
-        self.hp=2
+        self.metki = False
+        # self.vy_base_min=-50
+        self.vy_base_max = -350
+        self.vy_base = -150
+        self.vy_scale = 1.005
+        self.hp = 2
 
         self.dol = 0
         #pyglet.clock.schedule_once(self.dodaj, 1)
@@ -189,7 +298,16 @@ class Game:
 
         self.menuEnd = menu.Menu()
         #menu2 = menu.Menu()
-        napis = pyglet.text.Label(text="Game over", font_size=45, x=250, y=550, bold = True, color=(250, 250, 0, 255), anchor_x = "center", anchor_y = "center")
+        napis = pyglet.text.Label(
+            text="Game over",
+            font_size=45,
+            x=250,
+            y=550,
+            bold=True,
+            color=(250, 250, 0, 255),
+            anchor_x = "center",
+            anchor_y = "center",
+            )
         napis.rotation = 50
         self.menuEnd.labels.append(napis)
         for i in self.highScores.getScores():
@@ -197,35 +315,67 @@ class Game:
         tmp = resources.GNp
         tmp.anchor_x = tmp.width/2
         tmp.anchor_y = tmp.height/2
-        self.menuEnd.buttons.append(gumb.Gumb(self, tmp, name = "Retry", batch = self.menuEnd.buttonsBatch, x = window.width/2, y = window.height/2 - 160))
-        self.menuEnd.buttons.append(gumb.Gumb(self, tmp, name = "Main Menu", batch = self.menuEnd.buttonsBatch, x = window.width/2, y = window.height/2 - 240))
+        self.menuEnd.buttons.append(
+            gumb.Gumb(
+                self,
+                tmp,
+                name="Retry",
+                batch=self.menuEnd.buttonsBatch,
+                x=window.width/2,
+                y=window.height/2 - 160,
+            )
+        )
+        self.menuEnd.buttons.append(
+            gumb.Gumb(
+                self,
+                tmp,
+                name="Main Menu",
+                batch=self.menuEnd.buttonsBatch,
+                x=window.width/2,
+                y=window.height/2 - 240,
+            )
+        )
         for i in self.menuEnd.buttons[:]:
-            napis  = pyglet.text.Label(text=i.name, font_size=20, x=i.x, y=i.y, bold = True, color=(250, 250, 0, 150), anchor_x = "center", anchor_y = "center")
+            napis = pyglet.text.Label(
+                text=i.name,
+                font_size=20,
+                x=i.x,
+                y=i.y,
+                bold=True,
+                color=(250, 250, 0, 150),
+                anchor_x = "center",
+                anchor_y = "center",
+            )
             self.menuEnd.labels.append(napis)
 
-        self.raketa = raketa.Raketa(self, self.slika, batch=self.main_batch)#"""resources.raketa1""" self.slika, batch=self.main_batch)
+        self.raketa = raketa.Raketa(self, self.slika, batch=self.main_batch)
         window.push_handlers(self.raketa.key_handler)
 
-
-       # self.raketa2 = raketa.Raketa(self, resources.raketa2, batch=self.main_batch)
-        #window.push_handlers(self.raketa2.key_handler)
-
         gameover.game_over = False
-        gameover.freeze=False
-        gameover.shield=False
-        gameover.Hmetki=False
-        gameover.strel=False
-        gameover.speed=False
-        gameover.Pmetki=False
-        gameover.slow=False
-##        gameover.Hmeteorji=False
+        gameover.freeze = False
+        gameover.shield = False
+        gameover.Hmetki = False
+        gameover.strel = False
+        gameover.speed = False
+        gameover.Pmetki = False
+        gameover.slow = False
 
-
-        self.score=0
-        self.score_label = pyglet.text.Label(text=str(self.score), font_size=30, x=0, y=0, bold = True, color=(250, 250, 0, 255))
+        self.score = 0
+        self.score_label = pyglet.text.Label(
+            text=str(self.score),
+            font_size=30,
+            x=0,
+            y=0,
+            bold=True,
+            color=(250, 250, 0, 255),
+        )
         self.score_timer = 1
 
-        self.life_raketa = pyglet.sprite.Sprite(resources.raketa1, x = 500, y = 0)
+        self.life_raketa = pyglet.sprite.Sprite(
+            resources.raketa1,
+            x=500,
+            y=0,
+        )
         self.life_raketa.scale = 0.5
 
     def __init__(self):
@@ -235,19 +385,15 @@ class Game:
         if(not gameover.hiScores and not gameover.game_over and not gameover.start and not gameover.pause and not gameover.options):
             self.main_batch.draw()
             self.score_label.draw()
-            #self.raketa2.draw()
             self.life_raketa.x = 500
             for i in range(0, self.hp):
-                #self.slika_rakete=pyglet.sprite.Sprite(resources.raketa1, x = 500-(i*50), y = 0)
                 self.life_raketa.x -= 50 * self.life_raketa.scale
                 self.life_raketa.draw()
 
         else:
-            self.bg.draw() #narisemo ozadje
+            self.bg.draw()
             if(gameover.options):
                 self.menuOptions.draw()
-                #self.slika1.blit(window.width/2-58, window.height/2)
-                #self.slika2.blit(window.width/2+58, window.height/2)
                 for e in self.menuOptions.labels[:]:
                     e.draw()
             elif(gameover.start):
@@ -258,10 +404,6 @@ class Game:
                 self.menuPause.draw()
                 for e in self.menuPause.labels[:]:
                     e.draw()
-    #        elif(gameover.options):
-    #            self.menuOptions.draw()
-    #            for e in self.menuOptions.labels[:]:
-    #                e.draw()
             elif(gameover.hiScores):
                 self.menuHighScores.draw()
                 for e in self.menuHighScores.labels[:]:
@@ -286,25 +428,23 @@ class Game:
     def check_menu_hover(self, menu, x, y):
         for i in menu.buttons[:]:
             if(x>=i.x-i.width/2 and x<=i.width/2+i.x and y>=i.y-i.height/2 and y<=i.height/2+i.y):
-                #print('Hello!')
                 if(i.hover is False):
-                    i.hover=True
+                    i.hover = True
                     menu.sprememba = True
                 break
             else:
                 if(i.hover is True):
-                    i.hover=False
+                    i.hover = False
                     menu.sprememba = True
 
     def mouse_motion(self, x, y, dx, dy):
-        if(gameover.start): #and gameover.start and gameover.pause and gameover.options):
+        if(gameover.start):
             self.check_menu_hover(self.menuStart, x, y)
-        if(gameover.pause): #and gameover.start and gameover.pause and gameover.options):
+        if(gameover.pause):
             self.check_menu_hover(self.menuPause, x, y)
-        if(gameover.game_over): #and gameover.start and gameover.pause and gameover.options):
+        if(gameover.game_over):
             self.check_menu_hover(self.menuEnd, x, y)
-            #print(self.hover)
-        if(gameover.hiScores): #and gameover.start and gameover.pause and gameover.options):
+        if(gameover.hiScores):
             self.check_menu_hover(self.menuHighScores, x, y)
 
     def update(self, dt):
@@ -328,11 +468,11 @@ class Game:
                         self.dodaj_timer += 0.01
                     else:
                         self.dodaj()
-                        self.dodaj_timerbase = self.dodaj_timerbase * self.dodaj_scale
-                        self.dodaj_timer = self.dodaj_timer + self.dodaj_timerbase
-                self.scorePU=self.score/300
-                if self.scorePU>self.stevec:
-                    self.stevec+=1
+                        self.dodaj_timerbase *= self.dodaj_scale
+                        self.dodaj_timer += self.dodaj_timerbase
+                self.scorePU = self.score/300
+                if self.scorePU > self.stevec:
+                    self.stevec += 1
                     self.dodajPU()
                 for m in self.meteorji_list[:]:
                     m.update(dt)
@@ -340,59 +480,58 @@ class Game:
                     m.collision(self.raketa)
             else:
                 self.freeze_timer -= dt
-                if(self.freeze_timer <= 0): #freeze timer
-                    gameover.freeze=False
-                    self.freeze_timer=self.pu_timerbase
-            if gameover.shield: #shield timer
+                # freeze timer
+                if(self.freeze_timer <= 0):
+                    gameover.freeze = False
+                    self.freeze_timer = self.pu_timerbase
+            # shield timer
+            if gameover.shield:
                 self.shield_timer -= dt
                 if(self.shield_timer <= 0):
-                    gameover.shield=False
-                    self.shield_timer=self.pu_timerbase
-            if gameover.Hmetki: #Hmetki timer
+                    gameover.shield = False
+                    self.shield_timer = self.pu_timerbase
+            # Hmetki timer
+            if gameover.Hmetki:
                 self.Hmetki_timer -= dt
                 if(self.Hmetki_timer <= 0):
-                    gameover.Hmetki=False
-                    self.Hmetki_timer=self.pu_timerbase
-                    self.raketa.timer_base=1/2
-            if gameover.speed: #speed timer
+                    gameover.Hmetki = False
+                    self.Hmetki_timer = self.pu_timerbase
+                    self.raketa.timer_base = 1/2
+            # speed timer
+            if gameover.speed:
                 self.speed_timer -= dt
                 if(self.speed_timer <= 0):
-                    gameover.speed=False
-                    self.speed_timer=self.pu_timerbase
-                    self.raketa.vx=200
-            if gameover.strel: #strel timer
+                    gameover.speed = False
+                    self.speed_timer = self.pu_timerbase
+                    self.raketa.vx = 200
+            # strel timer
+            if gameover.strel:
                 self.strel_timer -= dt
                 if(self.strel_timer <= 0):
-                    gameover.strel=False
-                    self.strel_timer=self.pu_timerbase
-                    self.metki=False
-            if gameover.Pmetki: #Pmetki timer
+                    gameover.strel = False
+                    self.strel_timer = self.pu_timerbase
+                    self.metki = False
+            # Pmetki timer
+            if gameover.Pmetki:
                 self.Pmetki_timer -= dt
                 if(self.Pmetki_timer <= 0):
-                    gameover.Pmetki=False
-                    self.Pmetki_timer=self.pu_timerbase
-                    self.raketa.timer_base=1/2
-            if gameover.slow: #slow timer
+                    gameover.Pmetki = False
+                    self.Pmetki_timer = self.pu_timerbase
+                    self.raketa.timer_base = 1/2
+            # slow timer
+            if gameover.slow:
                 self.slow_timer -= dt
                 if(self.slow_timer <= 0):
-                    gameover.slow=False
-                    self.slow_timer=self.pu_timerbase
-                    self.raketa.vx=200
-##            if gameover.slow: #Hmeteorji timer
-##                self.Hmeteorji_timer -= dt
-##                if(self.Hmeteorji_timer <= 0):
-##                    gameover.Hmeteorji=False
-##                    self.Hmeteorji_timer=self.pu_timerbase
-##                    #############""""""#############
+                    gameover.slow = False
+                    self.slow_timer = self.pu_timerbase
+                    self.raketa.vx = 200
 
-            #if(self.raketa.zabit==True):
-            #    self.raketa.zabit=False
             self.score_label.text = str(self.score)
             self.score_timerbase = 1
-            if(self.score_timer>0):
-                self.score_timer -=dt
+            if(self.score_timer > 0):
+                self.score_timer -= dt
             else:
-                self.score_timer=self.score_timerbase
+                self.score_timer = self.score_timerbase
                 self.score += 10
 
         else:
@@ -403,54 +542,55 @@ class Game:
                 gameover.timer = gameover.baseTimer
             elif(gameover.afterPause):
                 gameover.timer -= dt
-                if(gameover.timer<=0):
+                if(gameover.timer <= 0):
                     gameover.afterPause = False
         #printa score
-        if(gameover.game_over == True):
-            #print(self.score)
-            napis = pyglet.text.Label(text=str(self.score), font_size=30, x=250, y=500, bold = True, color=(250, 250, 0, 150), anchor_x = "center", anchor_y = "center")
+        if(gameover.game_over):
+            napis = pyglet.text.Label(
+                text=str(self.score),
+                font_size=30,
+                x=250,
+                y=500,
+                bold=True,
+                color=(250, 250, 0, 150),
+                anchor_x = "center",
+                anchor_y = "center",
+            )
             self.menuEnd.labels.append(napis)
-
-
 
     def dodaj(self):
 
-        x=random.randint(0,2)
-        if(x==1):
-            tmp = meteor.Meteor(self, resources.meteor2,
-                                batch = self.main_batch)
-            tmp.velikost="v"
-            tmp.x=random.randint(0, window.width-tmp.width)
-            tmp.y=window.height
-            #tmp.vy = random.randint(int(round(self.vy_base, 0)), int(round(self.vy_base_min, 0))
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+        x = random.randint(0, 2)
+        if(x == 1):
+            tmp = meteor.Meteor(
+                self,
+                resources.meteor2,
+                batch=self.main_batch,
+            )
+            tmp.velikost = "v"
+            tmp.x = random.randint(0, window.width-tmp.width)
+            tmp.y = window.height
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
-##            print(tmp.vy)
-##            f=open("tabela.csv", "a")
-##            f.write(str(tmp.vy)[0:4]+"\n")
-##            f.close()
-            #self.vy_base_min *= self.vy_scale
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             self.meteorji_list.append(tmp)
         if(x == 2):
             tmp = meteor.Meteor(self, resources.meteor1, batch=self.main_batch)
-            tmp.velikost="m"
-            tmp.x=random.randint(0, window.width-tmp.width)
-            tmp.y=window.height
-            #tmp.vy = random.randint(int(round(self.vy_base, 0)), int(round(self.vy_base_min, 0))
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+            tmp.velikost = "m"
+            tmp.x = random.randint(0, window.width-tmp.width)
+            tmp.y = window.height
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             print(tmp.vy)
-            #self.vy_base_min *= self.vy_scale
             self.meteorji_list.append(tmp)
 
-        p=random.randint(0,10000)
-        if(p>=116 and p<=120):
+        p = random.randint(0, 10000)
+        if(p >= 116 and p <= 120):
             tmp = powerup.Powerup(self,
                                   img=resources.pu1,
                                   power="xLife",
@@ -458,14 +598,14 @@ class Game:
                                   )
             tmp.x = random.randint(0, window.width - tmp.width)
             tmp.y = window.height
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             print(tmp.vy)
             self.powerup_list.append(tmp)
-        elif(p>=916 and p<=920):
+        elif(p >= 916 and p <= 920):
             tmp = powerup.Powerup(self,
                                   img=resources.pu2,
                                   power="Bomb",
@@ -473,14 +613,14 @@ class Game:
                                   )
             tmp.x = random.randint(0, window.width - tmp.width)
             tmp.y = window.height
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             print(tmp.vy)
             self.powerup_list.append(tmp)
-        elif(p>=516 and p<=520):
+        elif(p >= 516 and p <= 520):
             tmp = powerup.Powerup(self,
                                   img=resources.metki,
                                   power="Strel",
@@ -488,14 +628,14 @@ class Game:
                                   )
             tmp.x = random.randint(0, window.width - tmp.width)
             tmp.y = window.height
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             print(tmp.vy)
             self.powerup_list.append(tmp)
-        elif(p>=716 and p<=720):
+        elif(p >= 716 and p <= 720):
             tmp = powerup.Powerup(self,
                                   img=resources.speed,
                                   power="Speed",
@@ -503,14 +643,14 @@ class Game:
                                   )
             tmp.x = random.randint(0, window.width - tmp.width)
             tmp.y = window.height
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             print(tmp.vy)
             self.powerup_list.append(tmp)
-        elif(p>=316 and p<=320):
+        elif(p >= 316 and p <= 320):
             tmp = powerup.Powerup(self,
                                   img=resources.Hmetki,
                                   power="Hmetki",
@@ -518,15 +658,15 @@ class Game:
                                   )
             tmp.x = random.randint(0, window.width - tmp.width)
             tmp.y = window.height
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             print(tmp.vy)
             self.powerup_list.append(tmp)
 
-        elif(p>=400 and p<=401):
+        elif(p >= 400 and p <= 401):
             tmp = powerup.Powerup(self,
                                   img=resources.Freeze,
                                   power="Freeze",
@@ -534,15 +674,15 @@ class Game:
                                   )
             tmp.x = random.randint(0, window.width - tmp.width)
             tmp.y = window.height
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             print(tmp.vy)
             self.powerup_list.append(tmp)
 
-        elif(p>=216 and p<=220):
+        elif(p >= 216 and p <= 220):
             tmp = powerup.Powerup(self,
                                   img=resources.Shield,
                                   power="Shield",
@@ -550,15 +690,15 @@ class Game:
                                   )
             tmp.x = random.randint(0, window.width - tmp.width)
             tmp.y = window.height
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             print(tmp.vy)
             self.powerup_list.append(tmp)
 
-        elif(p>=251 and p<=275):
+        elif(p >= 251 and p <= 275):
             tmp = powerup.Powerup(self,
                                   img=resources.Pmetki,
                                   power="Pmetki",
@@ -566,15 +706,15 @@ class Game:
                                   )
             tmp.x = random.randint(0, window.width - tmp.width)
             tmp.y = window.height
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             print(tmp.vy)
             self.powerup_list.append(tmp)
 
-        elif(p>=51 and p<=75):
+        elif(p >= 51 and p <= 75):
             tmp = powerup.Powerup(self,
                                   img=resources.slow,
                                   power="slow",
@@ -582,15 +722,15 @@ class Game:
                                   )
             tmp.x = random.randint(0, window.width - tmp.width)
             tmp.y = window.height
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             print(tmp.vy)
             self.powerup_list.append(tmp)
 
-        elif(p>=151 and p<=175):
+        elif(p >= 151 and p <= 175):
             tmp = powerup.Powerup(self,
                                   img=resources.Hmeteorji,
                                   power="Hmeteorji",
@@ -598,17 +738,17 @@ class Game:
                                   )
             tmp.x = random.randint(0, window.width - tmp.width)
             tmp.y = window.height
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             print(tmp.vy)
             self.powerup_list.append(tmp)
 
     def dodajPU(self):
-        p=random.randint(0,100)
-        if(p>=26 and p<=37):
+        p = random.randint(0, 100)
+        if(p >= 26 and p <= 37):
             tmp = powerup.Powerup(self,
                                   img=resources.pu1,
                                   power="xLife",
@@ -616,14 +756,14 @@ class Game:
                                   )
             tmp.x = random.randint(0, window.width - tmp.width)
             tmp.y = window.height
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             print(tmp.vy)
             self.powerup_list.append(tmp)
-        elif(p>=51 and p<=65):
+        elif(p >= 51 and p <= 65):
             tmp = powerup.Powerup(self,
                                   img=resources.metki,
                                   power="Strel",
@@ -631,14 +771,14 @@ class Game:
                                   )
             tmp.x = random.randint(0, window.width - tmp.width)
             tmp.y = window.height
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             print(tmp.vy)
             self.powerup_list.append(tmp)
-        elif(p>=66 and p<=80):
+        elif(p >= 66 and p <= 80):
             tmp = powerup.Powerup(self,
                                   img=resources.speed,
                                   power="Speed",
@@ -646,14 +786,14 @@ class Game:
                                   )
             tmp.x = random.randint(0, window.width - tmp.width)
             tmp.y = window.height
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             print(tmp.vy)
             self.powerup_list.append(tmp)
-        elif(p>=81 and p<=95):
+        elif(p >= 81 and p <= 95):
             tmp = powerup.Powerup(self,
                                   img=resources.Hmetki,
                                   power="Hmetki",
@@ -661,21 +801,10 @@ class Game:
                                   )
             tmp.x = random.randint(0, window.width - tmp.width)
             tmp.y = window.height
-            tmp.vy = self.vy_base + random.randint(-50, 50)#*(self.vy_base_min - self.vy_base)
+            tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
-            if(self.vy_base<self.vy_base_max):
-                self.vy_base=self.vy_base_max
-                self.vy_scale=1
+            if(self.vy_base < self.vy_base_max):
+                self.vy_base = self.vy_base_max
+                self.vy_scale = 1
             print(tmp.vy)
             self.powerup_list.append(tmp)
-
-
-        """
-        if(not gameover.game_over and not gameover.start and not gameover.afterPause and not gameover.pause):
-            pyglet.clock.schedule_once(self.dodaj, dt/10)
-        """
-
-
-
-
-

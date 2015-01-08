@@ -34,12 +34,10 @@ class Menu():
 ##                i.draw()
         self.buttonsBatch.draw()
 
-
     def preveriKlike(self, x, y):
         #print("preverjam")
         for i in self.buttons:
             i.klik(x, y)
-
 
     def checkHover(self):
         for i in self.buttons[:]:
