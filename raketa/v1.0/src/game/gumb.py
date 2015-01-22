@@ -18,6 +18,7 @@ class Gumb(pyglet.sprite.Sprite):
                 self.game.myInit()
             elif(self.name == "Main Menu"):
                 self.game.start()
+                self.game.nastavi_raketo()
                 gameover.pause = False
                 gameover.options = False
                 gameover.hiScores = False
@@ -33,13 +34,16 @@ class Gumb(pyglet.sprite.Sprite):
             elif(self.name == "Options"):
                 gameover.start = False
                 gameover.options = True
-            elif(self.name == "Chose1"):
-                self.game.slika = resources.raketa1
-                self.slika_metek = resources.bull1
-            elif(self.name == "Chose2"):
-                print("raketa2")
-                self.game.slika = resources.raketa2
-                self.slika_metek = resources.bull2
+            elif(self.name == "Choose1"):
+                print('1')
+                self.game.raketa = 1
+                # self.game.slika = resources.raketa1
+                # self.slika_metek = resources.bull1
+            elif(self.name == "Choose2"):
+                print("2")
+                self.game.raketa = 2
+                # self.game.slika = resources.raketa2
+                # self.slika_metek = resources.bull2
             elif(self.name == "High Scores"):
                 gameover.hiScores = True
                 gameover.start = False

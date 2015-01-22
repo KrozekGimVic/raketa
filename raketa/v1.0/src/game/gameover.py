@@ -1,5 +1,5 @@
 game_over = False
-start = True
+start = False
 pause = False
 afterPause = False
 timer = 0
@@ -15,3 +15,4 @@ speed = False
 Pmetki = False
 slow = False
 Hmeteorji = False
+LHEstart = True

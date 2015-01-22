@@ -11,6 +11,7 @@ class Raketa(neMeteor.NeMeteor):
     def __init__(self, game, *args, **kwargs):
         super().__init__(game, *args, **kwargs)
         self.key_handler = key.KeyStateHandler()
+        self.x = 500//2-self.width//2
         self.vx = 200
         self.scale = 0.992
         self.timer = 0
@@ -20,7 +21,7 @@ class Raketa(neMeteor.NeMeteor):
 
     def update(self, dt):
         self.timer -= dt
-        #self.vx *= self.scale
+        # self.vx *= self.scale
         if(self.key_handler[key.LEFT]):
             self.x -= self.vx*dt
         if(self.key_handler[key.RIGHT]):
@@ -65,11 +66,6 @@ class Raketa(neMeteor.NeMeteor):
             tmp.x = self.x + self.width//2-2
             tmp.y = self.height
             self.game.metek_list.append(tmp)
-
-#    def zabij(self):
-#        gameover.game_over = True
-#        self.game.metek_list = []
-#        self.game.meteorji_list = []
 
     def life(self):
         if(self.game.hp == 0):

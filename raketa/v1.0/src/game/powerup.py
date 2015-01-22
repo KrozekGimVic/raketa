@@ -27,7 +27,7 @@ class Powerup(physObj.PhysObj):
             gameover.speed = True
             self.game.speed_timer = self.game.pu_timerbase
         if(self.power == "Hmetki"):
-            self.game.raketa.timer_base = 1/3
+            self.game.raketa.timer_base = 1/8
             gameover.Hmetki = True
             self.game.Hmetki_timer = self.game.pu_timerbase
         if(self.power == "Freeze"):

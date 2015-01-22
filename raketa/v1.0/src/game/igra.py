@@ -17,11 +17,24 @@ class Game:
         self.stevec = 0
         self.highScores = highScores.HighScores(self)
 
+        # ozadje
         self.bg = pyglet.sprite.Sprite(
             resources.BG,
             x=0,
             y=0,
-        )  # ozadje
+        )
+
+        # LHE pred začetkom
+        self.LHE = pyglet.sprite.Sprite(
+            resources.LHE,
+            x=-25,
+            y=0,
+        )
+        self.LHE.opacity = 0
+
+        # trajanje timerja za LightHex Entertaintment na začetku
+        self.LHE_timerbase = 5
+        self.LHE_timer = self.LHE_timerbase
 
         self.pu_timerbase = 7  # trajanje timerja za use powerupe in powerdowne
         self.freeze_timer = self.pu_timerbase
@@ -91,7 +104,7 @@ class Game:
             gumb.Gumb(
                 self,
                 tmp,
-                name="Exit",
+                name='Exit',
                 batch=self.menuStart.buttonsBatch,
                 x=window.width/2,
                 y=window.height/2 - 240))
@@ -104,8 +117,8 @@ class Game:
                 y=i.y,
                 bold=True,
                 color=(250, 250, 0, 150),
-                anchor_x = "center",
-                anchor_y = "center",
+                anchor_x='center',
+                anchor_y='center',
             )
             self.menuStart.labels.append(napis)
 
@@ -144,8 +157,8 @@ class Game:
                 y=i.y,
                 bold=True,
                 color=(250, 250, 0, 150),
-                anchor_x = "center",
-                anchor_y = "center")
+                anchor_x="center",
+                anchor_y="center")
             self.menuHighScores.labels.append(napis)
 
         self.menuOptions = menu.Menu()
@@ -172,7 +185,7 @@ class Game:
             gumb.Gumb(
                 self,
                 tmp,
-                name="Chose1",
+                name="Choose1",
                 batch=self.menuOptions.buttonsBatch,
                 x=window.width/2 - tmp.width,
                 y=window.height/2))
@@ -180,7 +193,7 @@ class Game:
             gumb.Gumb(
                 self,
                 tmp2,
-                name="Chose2",
+                name="Choose2",
                 batch=self.menuOptions.buttonsBatch,
                 x=window.width/2 + tmp.width,
                 y=window.height/2))
@@ -193,21 +206,7 @@ class Game:
                 x=window.width/2,
                 y=window.height/2 - 80))
         for i in self.menuOptions.buttons[:]:
-##            #if(i.name=='Chose1'):
-##                #self.slika = resources.raketa1
-##                #self.slika.x=i.x
-##                #self.slika.y=i.y
-##                #self.slika1.anchor_x = self.slika1.width/2
-##                #self.slika1.anchor_y = self.slika1.height/2
-##
-##            #elif(i.name=='Chose2'):
-##                #self.slika = resources.raketa2
-##                #self.slika.x=i.x
-##                #self.slika.y=i.y
-##                #self.slika2.anchor_x = self.slika2.width/2
-##                #self.slika2.anchor_y = self.slika2.height/2
-##
-##            else:
+
             napis = pyglet.text.Label(
                 text=i.name,
                 font_size=20,
@@ -274,30 +273,36 @@ class Game:
                 anchor_y = "center",
             )
             self.menuPause.labels.append(napis)
+        self.nastavi_raketo()
 
-        self.slika = resources.raketa1
-        self.slika_metek = resources.bull1
+    def nastavi_raketo(self):
+        print('lalala')
+        if gameover.raketa == 1:
+            self.slika = resources.raketa1
+            self.slika_metek = resources.bull1
+        else:
+            self.slika = resources.raketa2
+            self.slika_metek = resources.bull2
+
+        self.raketa = raketa.Raketa(self, self.slika, batch=self.main_batch)
+        window.push_handlers(self.raketa.key_handler)
 
     def myInit(self):
         self.metki = False
-        # self.vy_base_min=-50
         self.vy_base_max = -350
         self.vy_base = -150
         self.vy_scale = 1.005
         self.hp = 2
 
         self.dol = 0
-        #pyglet.clock.schedule_once(self.dodaj, 1)
         gameover.start = False
         self.main_batch = pyglet.graphics.Batch()
-        #print(self.main_batch)
         self.meteorji_list = []
         self.metek_list = []
         self.menuEnd_list = []
         self.menuPause_list = []
 
         self.menuEnd = menu.Menu()
-        #menu2 = menu.Menu()
         napis = pyglet.text.Label(
             text="Game over",
             font_size=45,
@@ -348,8 +353,7 @@ class Game:
             )
             self.menuEnd.labels.append(napis)
 
-        self.raketa = raketa.Raketa(self, self.slika, batch=self.main_batch)
-        window.push_handlers(self.raketa.key_handler)
+        self.nastavi_raketo()
 
         gameover.game_over = False
         gameover.freeze = False
@@ -381,34 +385,44 @@ class Game:
     def __init__(self):
         self.start()
 
+    def fade(self):
+        if self.LHE.opacity < 255:
+            self.LHE.opacity += 1
+
     def draw(self):
-        if(not gameover.hiScores and not gameover.game_over and not gameover.start and not gameover.pause and not gameover.options):
+        if (not gameover.hiScores and
+                not gameover.game_over and
+                not gameover.start and
+                not gameover.pause and
+                not gameover.options and
+                not gameover.LHEstart):
             self.main_batch.draw()
             self.score_label.draw()
             self.life_raketa.x = 500
             for i in range(0, self.hp):
                 self.life_raketa.x -= 50 * self.life_raketa.scale
                 self.life_raketa.draw()
-
+        elif gameover.LHEstart:
+            self.LHE.draw()
         else:
             self.bg.draw()
-            if(gameover.options):
+            if gameover.options:
                 self.menuOptions.draw()
                 for e in self.menuOptions.labels[:]:
                     e.draw()
-            elif(gameover.start):
+            elif gameover.start:
                 self.menuStart.draw()
                 for e in self.menuStart.labels[:]:
                     e.draw()
-            elif(gameover.pause):
+            elif gameover.pause:
                 self.menuPause.draw()
                 for e in self.menuPause.labels[:]:
                     e.draw()
-            elif(gameover.hiScores):
+            elif gameover.hiScores:
                 self.menuHighScores.draw()
                 for e in self.menuHighScores.labels[:]:
                     e.draw()
-            else:
+            elif gameover.game_over:
                 self.menuEnd.draw()
                 for e in self.menuEnd.labels[:]:
                     e.draw()
@@ -448,7 +462,7 @@ class Game:
             self.check_menu_hover(self.menuHighScores, x, y)
 
     def update(self, dt):
-        if(not gameover.game_over and not gameover.start and not gameover.afterPause and not gameover.pause and not gameover.options and not gameover.hiScores):
+        if(not gameover.game_over and not gameover.start and not gameover.afterPause and not gameover.pause and not gameover.options and not gameover.hiScores and not gameover.LHEstart):
             window.set_exclusive_mouse()
             self.raketa.update(dt)
             for p in self.powerup_list[:]:
@@ -496,7 +510,7 @@ class Game:
                 if(self.Hmetki_timer <= 0):
                     gameover.Hmetki = False
                     self.Hmetki_timer = self.pu_timerbase
-                    self.raketa.timer_base = 1/2
+                    self.raketa.timer_base = 1/5
             # speed timer
             if gameover.speed:
                 self.speed_timer -= dt
@@ -517,7 +531,7 @@ class Game:
                 if(self.Pmetki_timer <= 0):
                     gameover.Pmetki = False
                     self.Pmetki_timer = self.pu_timerbase
-                    self.raketa.timer_base = 1/2
+                    self.raketa.timer_base = 1/5
             # slow timer
             if gameover.slow:
                 self.slow_timer -= dt
@@ -544,7 +558,7 @@ class Game:
                 gameover.timer -= dt
                 if(gameover.timer <= 0):
                     gameover.afterPause = False
-        #printa score
+        # printa score
         if(gameover.game_over):
             napis = pyglet.text.Label(
                 text=str(self.score),
@@ -553,10 +567,19 @@ class Game:
                 y=500,
                 bold=True,
                 color=(250, 250, 0, 150),
-                anchor_x = "center",
-                anchor_y = "center",
+                anchor_x="center",
+                anchor_y="center",
             )
             self.menuEnd.labels.append(napis)
+
+        # LHE start timer
+        if gameover.LHEstart:
+            self.fade()
+            self.LHE_timer -= dt
+            if(self.LHE_timer <= 0):
+                gameover.LHEstart = False
+                self.LHE_timer = self.LHE_timerbase
+                gameover.start = True
 
     def dodaj(self):
 
@@ -586,7 +609,6 @@ class Game:
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            print(tmp.vy)
             self.meteorji_list.append(tmp)
 
         p = random.randint(0, 10000)
