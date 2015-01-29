@@ -28,7 +28,7 @@ class Menu():
 
     def checkHover(self):
         for i in self.buttons[:]:
-            # ce gres z misko cez se spremeni
+            """# ce gres z misko cez se spremeni
             if(i.name == 'Choose1'):
                 # preveri ce je slika prava, drugace zamenja
                 if(i.hover):
@@ -40,11 +40,11 @@ class Menu():
                     i.image = self.GchooseS
                 else:
                     i.image = self.GchooseS1
+            else:"""
+            if(i.hover):
+                i.image = self.hover
             else:
-                if(i.hover):
-                    i.image = self.hover
-                else:
-                    i.image = self.no_hover
+                i.image = self.no_hover
 
     def addButton(self):
         pass

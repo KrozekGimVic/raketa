@@ -33,7 +33,8 @@ class Game:
         self.LHE.opacity = 0
 
         # trajanje timerja za LightHex Entertaintment na začetku
-        self.LHE_timerbase = 5
+        # !!! sam zacasno, pol dej timerbase na 5 !!!
+        self.LHE_timerbase = 0
         self.LHE_timer = self.LHE_timerbase
 
         self.pu_timerbase = 7  # trajanje timerja za use powerupe in powerdowne
@@ -161,6 +162,7 @@ class Game:
                 anchor_y="center")
             self.menuHighScores.labels.append(napis)
 
+        # options menu
         self.menuOptions = menu.Menu()
         napis = pyglet.text.Label(
             text="Options",
@@ -172,39 +174,34 @@ class Game:
             )
         napis.rotation = 50
         self.menuOptions.labels.append(napis)
-        tmp = resources.GchooseS1
-        tmp.anchor_x = tmp.width/2
-        tmp.anchor_y = tmp.height/2
-        tmp2 = resources.GchooseB1
-        tmp2.anchor_x = tmp.width/2
-        tmp2.anchor_y = tmp.height/2
         tmp1 = resources.GNp
         tmp1.anchor_x = tmp1.width/2
         tmp1.anchor_y = tmp1.height/2
         self.menuOptions.buttons.append(
             gumb.Gumb(
                 self,
-                tmp,
-                name="Choose1",
-                batch=self.menuOptions.buttonsBatch,
-                x=window.width/2 - tmp.width,
-                y=window.height/2))
-        self.menuOptions.buttons.append(
-            gumb.Gumb(
-                self,
-                tmp2,
-                name="Choose2",
-                batch=self.menuOptions.buttonsBatch,
-                x=window.width/2 + tmp.width,
-                y=window.height/2))
-        self.menuOptions.buttons.append(
-            gumb.Gumb(
-                self,
                 tmp1,
-                name="Main Menu",
+                name="Hangar",
                 batch=self.menuOptions.buttonsBatch,
                 x=window.width/2,
                 y=window.height/2 - 80))
+        self.menuOptions.buttons.append(
+            gumb.Gumb(
+                self,
+                tmp,
+                name="Instructions",
+                batch=self.menuOptions.buttonsBatch,
+                x=window.width/2,
+                y=window.height/2 - 160))
+        self.menuOptions.buttons.append(
+            gumb.Gumb(
+                self,
+                tmp,
+                name="Main Menu",
+                batch=self.menuOptions.buttonsBatch,
+                x=window.width/2,
+                y=window.height/2 - 240))
+        
         for i in self.menuOptions.buttons[:]:
 
             napis = pyglet.text.Label(
@@ -276,7 +273,6 @@ class Game:
         self.nastavi_raketo()
 
     def nastavi_raketo(self):
-        print('lalala')
         if gameover.raketa == 1:
             self.slika = resources.raketa1
             self.slika_metek = resources.bull1
@@ -460,6 +456,8 @@ class Game:
             self.check_menu_hover(self.menuEnd, x, y)
         if(gameover.hiScores):
             self.check_menu_hover(self.menuHighScores, x, y)
+        if(gameover.options):
+            self.check_menu_hover(self.menuOptions, x, y)
 
     def update(self, dt):
         if(not gameover.game_over and not gameover.start and not gameover.afterPause and not gameover.pause and not gameover.options and not gameover.hiScores and not gameover.LHEstart):

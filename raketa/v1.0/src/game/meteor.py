@@ -17,9 +17,12 @@ class Meteor(PhysObj):
 
     def zabij(self):
         if self.velikost == "v":
-            x = randint(1, 7)
-            if x == 1:
+            x = randint(1, 100)
+            if x < 20:
                 self.split()
+            if x == 99:
+                self.split(True)
+
         super().zabij()
         if self.game.raketa.zabit:
             self.game.meteorji_list = []
@@ -32,15 +35,18 @@ class Meteor(PhysObj):
                 self.game.score += 30
         self.game.raketa.zabit = False
 
-    def split(self):
-        for i in range(2):
-            tmp = Meteor(
-                self.game,
-                resources.meteor1,
-                batch=self.game.main_batch
-            )
-            tmp.velikost = "m"
-            tmp.y = self.y + (2 - i) * 30
-            tmp.x = self.x + (i - 1) * 30
-            tmp.vy = self.vy
-            self.game.meteorji_list.append(tmp)
+    def split(self, x=False):
+        if x:
+            pass
+        else:
+            for i in range(2):
+                tmp = Meteor(
+                    self.game,
+                    resources.meteor1,
+                    batch=self.game.main_batch
+                )
+                tmp.velikost = "m"
+                tmp.y = self.y + (2 - i) * 30
+                tmp.x = self.x + (i - 1) * 30
+                tmp.vy = self.vy
+                self.game.meteorji_list.append(tmp)

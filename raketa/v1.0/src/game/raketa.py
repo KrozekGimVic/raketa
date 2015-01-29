@@ -76,6 +76,10 @@ class Raketa(neMeteor.NeMeteor):
             for i in self.game.menuPause.buttons[:]:
                 i.hover = False
                 self.game.menuPause.sprememba = True
+            for i in self.game.menuEnd.buttons[:]:
+                print(i.name)
+                i.hover = False
+                self.game.menuEnd.sprememba = True
             self.game.mouse_motion(250, 300, 0, 0)
         else:
             self.zabit = True
