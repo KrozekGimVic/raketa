@@ -34,7 +34,7 @@ class Game:
 
         # trajanje timerja za LightHex Entertaintment na začetku
         # !!! sam zacasno, pol dej timerbase na 5 !!!
-        self.LHE_timerbase = 0
+        self.LHE_timerbase = 0.5
         self.LHE_timer = self.LHE_timerbase
 
         self.pu_timerbase = 7  # trajanje timerja za use powerupe in powerdowne
@@ -201,7 +201,7 @@ class Game:
                 batch=self.menuOptions.buttonsBatch,
                 x=window.width/2,
                 y=window.height/2 - 240))
-        
+
         for i in self.menuOptions.buttons[:]:
 
             napis = pyglet.text.Label(
@@ -266,8 +266,8 @@ class Game:
                 y=i.y,
                 bold=True,
                 color=(250, 250, 0, 150),
-                anchor_x = "center",
-                anchor_y = "center",
+                anchor_x="center",
+                anchor_y="center",
             )
             self.menuPause.labels.append(napis)
         self.nastavi_raketo()
@@ -306,8 +306,8 @@ class Game:
             y=550,
             bold=True,
             color=(250, 250, 0, 255),
-            anchor_x = "center",
-            anchor_y = "center",
+            anchor_x="center",
+            anchor_y="center",
             )
         napis.rotation = 50
         self.menuEnd.labels.append(napis)
@@ -623,7 +623,7 @@ class Game:
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            print(tmp.vy)
+            # print(tmp.vy)
             self.powerup_list.append(tmp)
         elif(p >= 916 and p <= 920):
             tmp = powerup.Powerup(self,
@@ -638,7 +638,7 @@ class Game:
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            print(tmp.vy)
+            # print(tmp.vy)
             self.powerup_list.append(tmp)
         elif(p >= 516 and p <= 520):
             tmp = powerup.Powerup(self,
@@ -653,7 +653,7 @@ class Game:
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            print(tmp.vy)
+            # print(tmp.vy)
             self.powerup_list.append(tmp)
         elif(p >= 716 and p <= 720):
             tmp = powerup.Powerup(self,
@@ -668,7 +668,7 @@ class Game:
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            print(tmp.vy)
+            # print(tmp.vy)
             self.powerup_list.append(tmp)
         elif(p >= 316 and p <= 320):
             tmp = powerup.Powerup(self,
@@ -683,7 +683,7 @@ class Game:
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            print(tmp.vy)
+            # print(tmp.vy)
             self.powerup_list.append(tmp)
 
         elif(p >= 400 and p <= 401):
@@ -699,7 +699,7 @@ class Game:
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            print(tmp.vy)
+            # print(tmp.vy)
             self.powerup_list.append(tmp)
 
         elif(p >= 216 and p <= 220):
@@ -715,7 +715,7 @@ class Game:
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            print(tmp.vy)
+            # print(tmp.vy)
             self.powerup_list.append(tmp)
 
         elif(p >= 251 and p <= 275):
@@ -731,7 +731,7 @@ class Game:
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            print(tmp.vy)
+            # print(tmp.vy)
             self.powerup_list.append(tmp)
 
         elif(p >= 51 and p <= 75):
@@ -747,7 +747,7 @@ class Game:
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            print(tmp.vy)
+            # print(tmp.vy)
             self.powerup_list.append(tmp)
 
         elif(p >= 151 and p <= 175):
@@ -763,10 +763,10 @@ class Game:
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            print(tmp.vy)
+            # print(tmp.vy)
             self.powerup_list.append(tmp)
 
-    def dodajPU(self):
+    def dodajPU(self, x=random.randint(0, window.width - 32), y=window.height):
         p = random.randint(0, 100)
         if(p >= 26 and p <= 37):
             tmp = powerup.Powerup(self,
@@ -774,14 +774,14 @@ class Game:
                                   power="xLife",
                                   batch=self.main_batch,
                                   )
-            tmp.x = random.randint(0, window.width - tmp.width)
-            tmp.y = window.height
+            tmp.x = x
+            tmp.y = y
             tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            print(tmp.vy)
+            # print(tmp.vy)
             self.powerup_list.append(tmp)
         elif(p >= 51 and p <= 65):
             tmp = powerup.Powerup(self,
@@ -789,14 +789,14 @@ class Game:
                                   power="Strel",
                                   batch=self.main_batch,
                                   )
-            tmp.x = random.randint(0, window.width - tmp.width)
-            tmp.y = window.height
+            tmp.x = x
+            tmp.y = y
             tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            print(tmp.vy)
+            # print(tmp.vy)
             self.powerup_list.append(tmp)
         elif(p >= 66 and p <= 80):
             tmp = powerup.Powerup(self,
@@ -804,14 +804,14 @@ class Game:
                                   power="Speed",
                                   batch=self.main_batch,
                                   )
-            tmp.x = random.randint(0, window.width - tmp.width)
-            tmp.y = window.height
+            tmp.x = x
+            tmp.y = y
             tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            print(tmp.vy)
+            # print(tmp.vy)
             self.powerup_list.append(tmp)
         elif(p >= 81 and p <= 95):
             tmp = powerup.Powerup(self,
@@ -819,12 +819,12 @@ class Game:
                                   power="Hmetki",
                                   batch=self.main_batch,
                                   )
-            tmp.x = random.randint(0, window.width - tmp.width)
-            tmp.y = window.height
+            tmp.x = x
+            tmp.y = y
             tmp.vy = self.vy_base + random.randint(-50, 50)
             self.vy_base = self.vy_base*self.vy_scale
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            print(tmp.vy)
+            # print(tmp.vy)
             self.powerup_list.append(tmp)

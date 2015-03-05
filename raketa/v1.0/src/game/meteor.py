@@ -39,14 +39,19 @@ class Meteor(PhysObj):
         if x:
             pass
         else:
-            for i in range(2):
-                tmp = Meteor(
-                    self.game,
-                    resources.meteor1,
-                    batch=self.game.main_batch
-                )
-                tmp.velikost = "m"
-                tmp.y = self.y + (2 - i) * 30
-                tmp.x = self.x + (i - 1) * 30
-                tmp.vy = self.vy
-                self.game.meteorji_list.append(tmp)
+            a = randint(0, 10)
+            if a <= 3:
+                self.game.dodajPU(self.x, self.y)
+                print("juhuu!! :)")
+            else:
+                for i in range(2):
+                    tmp = Meteor(
+                        self.game,
+                        resources.meteor1,
+                        batch=self.game.main_batch
+                    )
+                    tmp.velikost = "m"
+                    tmp.y = self.y + (2 - i) * 30
+                    tmp.x = self.x + (i - 1) * 30
+                    tmp.vy = self.vy
+                    self.game.meteorji_list.append(tmp)
