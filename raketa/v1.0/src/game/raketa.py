@@ -10,6 +10,7 @@ from . import resources
 class Raketa(neMeteor.NeMeteor):
     def __init__(self, game, *args, **kwargs):
         super().__init__(game, *args, **kwargs)
+        self.dodatki = []  # seznam useh scitou...
         self.key_handler = key.KeyStateHandler()
         self.x = 500//2-self.width//2
         self.vx = 200

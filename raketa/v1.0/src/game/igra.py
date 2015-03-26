@@ -37,7 +37,8 @@ class Game:
         self.LHE_timerbase = 0.5
         self.LHE_timer = self.LHE_timerbase
 
-        self.pu_timerbase = 7  # trajanje timerja za use powerupe in powerdowne
+        # trajanje timerja za use powerupe in powerdowne
+        self.pu_timerbase = 7
         self.freeze_timer = self.pu_timerbase
         self.shield_timer = self.pu_timerbase
         self.Hmetki_timer = self.pu_timerbase
@@ -344,8 +345,8 @@ class Game:
                 y=i.y,
                 bold=True,
                 color=(250, 250, 0, 150),
-                anchor_x = "center",
-                anchor_y = "center",
+                anchor_x="center",
+                anchor_y="center",
             )
             self.menuEnd.labels.append(napis)
 
@@ -437,7 +438,10 @@ class Game:
 
     def check_menu_hover(self, menu, x, y):
         for i in menu.buttons[:]:
-            if(x>=i.x-i.width/2 and x<=i.width/2+i.x and y>=i.y-i.height/2 and y<=i.height/2+i.y):
+            if(x >= i.x-i.width/2 and
+                x <= i.width/2+i.x and
+                y >= i.y-i.height/2 and
+               y <= i.height/2+i.y):
                 if(i.hover is False):
                     i.hover = True
                     menu.sprememba = True
@@ -460,9 +464,18 @@ class Game:
             self.check_menu_hover(self.menuOptions, x, y)
 
     def update(self, dt):
-        if(not gameover.game_over and not gameover.start and not gameover.afterPause and not gameover.pause and not gameover.options and not gameover.hiScores and not gameover.LHEstart):
-            window.set_exclusive_mouse()
+        if(not gameover.game_over and
+           not gameover.start and
+           not gameover.afterPause and
+           not gameover.pause and
+           not gameover.options and
+           not gameover.hiScores and
+           not gameover.LHEstart):
+            # window.set_exclusive_mouse()
             self.raketa.update(dt)
+            for d in self.raketa.dodatki[:]:
+                d.x = self.raketa.x
+                d.y = self.raketa.y
             for p in self.powerup_list[:]:
                 p.update(dt)
             for i in self.metek_list[:]:
@@ -500,8 +513,12 @@ class Game:
             if gameover.shield:
                 self.shield_timer -= dt
                 if(self.shield_timer <= 0):
+                    scit_index = self.raketa.dodatki.index(self.raketa.scit)
+                    self.raketa.dodatki[scit_index].delete()
+                    self.raketa.dodatki.pop(scit_index)
                     gameover.shield = False
                     self.shield_timer = self.pu_timerbase
+
             # Hmetki timer
             if gameover.Hmetki:
                 self.Hmetki_timer -= dt
@@ -702,7 +719,7 @@ class Game:
             # print(tmp.vy)
             self.powerup_list.append(tmp)
 
-        elif(p >= 216 and p <= 220):
+        elif(p >= 216):  # and p <= 220):
             tmp = powerup.Powerup(self,
                                   img=resources.Shield,
                                   power="Shield",
@@ -715,7 +732,6 @@ class Game:
             if(self.vy_base < self.vy_base_max):
                 self.vy_base = self.vy_base_max
                 self.vy_scale = 1
-            # print(tmp.vy)
             self.powerup_list.append(tmp)
 
         elif(p >= 251 and p <= 275):

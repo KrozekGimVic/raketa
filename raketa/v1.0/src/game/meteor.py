@@ -27,7 +27,7 @@ class Meteor(PhysObj):
         if self.game.raketa.zabit:
             self.game.meteorji_list = []
 
-        #Za score.
+        # Za score.
         if not self.game.raketa.zabit:
             if self.zabit and self.velikost == "m":
                 self.game.score += 20
@@ -40,9 +40,10 @@ class Meteor(PhysObj):
             pass
         else:
             a = randint(0, 10)
+            # pade PU iz meteorja
             if a <= 3:
                 self.game.dodajPU(self.x, self.y)
-                print("juhuu!! :)")
+            # padeta 2 mala meteorja iz meteorja
             else:
                 for i in range(2):
                     tmp = Meteor(
