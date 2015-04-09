@@ -16,3 +16,4 @@ Pmetki = False
 slow = False
 Hmeteorji = False
 LHEstart = True
+shield_zadet = False

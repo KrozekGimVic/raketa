@@ -34,11 +34,11 @@ class Game:
 
         # trajanje timerja za LightHex Entertaintment na začetku
         # !!! sam zacasno, pol dej timerbase na 5 !!!
-        self.LHE_timerbase = 5
+        self.LHE_timerbase = 0.5
         self.LHE_timer = self.LHE_timerbase
 
         # trajanje timerja za use powerupe in powerdowne
-        self.pu_timerbase = 7
+        self.pu_timerbase = 10
         self.freeze_timer = self.pu_timerbase
         self.shield_timer = self.pu_timerbase
         self.Hmetki_timer = self.pu_timerbase
@@ -47,6 +47,13 @@ class Game:
         self.Pmetki_timer = self.pu_timerbase
         self.slow_timer = self.pu_timerbase
         # self.Hmeteorji_timer = self.pu_timerbase
+
+        # timer za utripanje ščita
+        self.shield_utripa_timerbase = 1
+        self.shield_utripa_timer = self.shield_utripa_timerbase
+        # timer za utripanje ščita če ga zadane meteor
+        self.shield_hit_timerbase = 0.5
+        self.shield_hit_timer = self.shield_hit_timerbase
 
         self.dodaj_timerbase = 1
         self.dodaj_timer = self.dodaj_timerbase
@@ -518,6 +525,32 @@ class Game:
                     self.raketa.dodatki.pop(scit_index)
                     gameover.shield = False
                     self.shield_timer = self.pu_timerbase
+                    self.shield_utripa_timer = self.shield_utripa_timerbase
+                    # zbrise se scit_zadet
+                    scit_index = self.raketa.dodatki.index(
+                        self.raketa.scit_zadet
+                    )
+                    self.raketa.dodatki[scit_index].delete()
+                    self.raketa.dodatki.pop(scit_index)
+                if(self.shield_timer <= 3):
+                    self.shield_utripa_timer -= dt
+                    if(self.shield_utripa_timer >= 0.5):
+                        self.raketa.scit.opacity = 0
+                    else:
+                        self.raketa.scit.opacity = 255
+                    if(self.shield_utripa_timer <= 0):
+                        self.shield_utripa_timer = self.shield_utripa_timerbase
+                if(gameover.shield_zadet):
+                    self.shield_hit_timer -= dt
+                    if(self.shield_hit_timer >= 0.25):
+                        self.raketa.scit.opacity = 0
+                        self.raketa.scit_zadet.opacity = 255
+                    else:
+                        self.raketa.scit_zadet.opacity = 0
+                        self.raketa.scit.opacity = 255
+                    if(self.shield_hit_timer <= 0):
+                        gameover.shield_zadet = False
+                        self.shield_hit_timer = self.shield_hit_timerbase
 
             # Hmetki timer
             if gameover.Hmetki:
@@ -719,7 +752,7 @@ class Game:
             # print(tmp.vy)
             self.powerup_list.append(tmp)
 
-        elif(p >= 216 and p <= 220):
+        elif(p >= 216 and p <= 520):  # and p <= 220):
             tmp = powerup.Powerup(self,
                                   img=resources.Shield,
                                   power="Shield",

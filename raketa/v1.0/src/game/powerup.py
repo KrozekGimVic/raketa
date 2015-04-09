@@ -36,16 +36,6 @@ class Powerup(physObj.PhysObj):
             self.game.freeze_timer = self.game.pu_timerbase
         if(self.power == "Shield"):
             gameover.shield = True
-            try:
-                try:
-                    scit_index = self.game.raketa.dodatki.index(
-                        self.game.raketa.scit)
-                    self.game.raketa.dodatki[scit_index].delete()
-                    self.game.raketa.dodatki.pop(scit_index)
-                except ValueError:
-                    pass
-            except AttributeError:
-                pass
             self.game.raketa.scit = pyglet.sprite.Sprite(
                 resources.S1,
                 x=self.game.raketa.x,
@@ -53,6 +43,16 @@ class Powerup(physObj.PhysObj):
                 batch=self.game.main_batch,
             )
             self.game.raketa.dodatki.append(self.game.raketa.scit)
+            self.game.shield_timer = self.game.pu_timerbase
+            # slika za takrt k bo utripu zadet
+            self.game.raketa.scit_zadet = pyglet.sprite.Sprite(
+                resources.S1zadet,
+                x=self.game.raketa.x,
+                y=self.game.raketa.y,
+                batch=self.game.main_batch,
+            )
+            self.game.raketa.scit_zadet.opacity = 0
+            self.game.raketa.dodatki.append(self.game.raketa.scit_zadet)
             self.game.shield_timer = self.game.pu_timerbase
         if(self.power == "Pmetki"):
             gameover.Pmetki = True

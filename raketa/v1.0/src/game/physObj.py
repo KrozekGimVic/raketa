@@ -22,6 +22,9 @@ class PhysObj(Object):
         if(self.tip == "Raketa"):
             if not gameover.shield:
                 self.life()
+            else:
+                gameover.shield_zadet = True
+                self.game.shield_hit_timer = self.game.shield_hit_timerbase
         else:
             self.brisanje()
             self.zabit = True
