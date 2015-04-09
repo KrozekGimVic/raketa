@@ -43,9 +43,9 @@ class Powerup(physObj.PhysObj):
                     self.game.raketa.dodatki[scit_index].delete()
                     self.game.raketa.dodatki.pop(scit_index)
                 except ValueError:
-                    print("ValueError")
-            except AttributeError:  # or ValueError:
-                print("eror!")
+                    pass
+            except AttributeError:
+                pass
             self.game.raketa.scit = pyglet.sprite.Sprite(
                 resources.S1,
                 x=self.game.raketa.x,

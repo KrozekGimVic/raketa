@@ -34,7 +34,7 @@ class Game:
 
         # trajanje timerja za LightHex Entertaintment na začetku
         # !!! sam zacasno, pol dej timerbase na 5 !!!
-        self.LHE_timerbase = 0.5
+        self.LHE_timerbase = 5
         self.LHE_timer = self.LHE_timerbase
 
         # trajanje timerja za use powerupe in powerdowne
@@ -719,7 +719,7 @@ class Game:
             # print(tmp.vy)
             self.powerup_list.append(tmp)
 
-        elif(p >= 216):  # and p <= 220):
+        elif(p >= 216 and p <= 220):
             tmp = powerup.Powerup(self,
                                   img=resources.Shield,
                                   power="Shield",
